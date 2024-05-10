@@ -12,7 +12,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableWebSecurity
 public class SecurityConfiguration {
 
-    private static final String[] PERMIT_ALL_URLS = {"*","/", "/login", "/register"};
+    private static final String[] PERMIT_ALL_URLS = {"*","/api/products","/", "/login", "/register","/add-product","/api/products/{id}"};
 
     @Bean
     public SecurityFilterChain configureSecurityFilterChain(HttpSecurity http) throws Exception {

@@ -25,9 +25,12 @@ public class UserController {
         String email = userData.get("email");
         String name = userData.get("name");
         String password = userData.get("password");
-
+        String productName = userData.get("ProductName");
+        String productUrl = userData.get("ProductUrl");
+        String productAbout = userData.get("ProductAbout");
+        String productPrice = userData.get("ProductPrice");
         try {
-            User user = userService.createUser(email, name, password);
+            User user = userService.createUser(email, name, password,productName,productUrl,productPrice,productAbout);
             // Return user data in response
             return ResponseEntity.ok(user);
         } catch (RuntimeException e) {
@@ -48,4 +51,27 @@ public class UserController {
         // If login successful, return the user data
         return ResponseEntity.ok(user);
     }
+    @PutMapping("/add-product")
+    public ResponseEntity<?> addProductToUser(@RequestBody Map< String,String> credentials) {
+        // Check if the user exists
+        String email = credentials.get("email");
+        String productName = credentials.get("ProductName");
+        String productAbout = credentials.get("ProductAbout");
+        String productPrice = credentials.get("ProductPrice");
+        String productUrl = credentials.get("ProductUrl");
+        User user = userService.getUserByEmail(email);
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User with email " + email + " not found");
+        }
+
+        try {
+            // Update the user's product
+            userService.updateUserProduct(email, productName,productAbout,productPrice,productUrl);
+            return ResponseEntity.ok(user);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
+
+
 }

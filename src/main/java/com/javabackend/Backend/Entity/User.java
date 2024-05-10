@@ -17,6 +17,10 @@ public class User {
 
     private String password;
 
+    private String ProductName;
+    private String ProductUrl;
+    private String ProductPrice;
+    private String ProductAbout;
     public String getEmail() {
         return email;
     }
@@ -47,5 +51,37 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getProductAbout() {
+        return ProductAbout;
+    }
+
+    public void setProductAbout(String productAbout) {
+        ProductAbout = productAbout;
+    }
+
+    public String getProductName() {
+        return ProductName;
+    }
+
+    public void setProductName(String productName) {
+        ProductName = productName;
+    }
+
+    public String getProductPrice() {
+        return ProductPrice;
+    }
+
+    public void setProductPrice(String productPrice) {
+        ProductPrice = productPrice;
+    }
+
+    public String getProductUrl() {
+        return ProductUrl;
+    }
+
+    public void setProductUrl(String productUrl) {
+        ProductUrl = productUrl;
     }
 }
